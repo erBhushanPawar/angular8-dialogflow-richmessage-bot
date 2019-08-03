@@ -14,7 +14,7 @@ export class ChatService {
   client = new ApiAiClient({ accessToken: this.token });
 
   private conversationSubject = new Subject<Message[] | RichMessage[]>();
-  private conversation: Message[] | RichMessage[] = [];
+  private conversation: Message[] | RichMessage[] | any[] = [];
   private greetMessage = "Hi there, glad to see you here ! I'm BBot designed by Bhushan for this website. We can talk about technology, article, employment history, social accounts etc. I would help you with few automated hints (or type hints) if required , Let's get started.";
 
   constructor() {
@@ -29,7 +29,7 @@ export class ChatService {
     return this.conversationSubject.asObservable();
   }
 
-  addMessageToConversation(msg: Message | RichMessage) {
+  addMessageToConversation(msg: Message | RichMessage | any) {
     this.conversation.push(msg);
     this.setConversation(this.conversation);
   }
